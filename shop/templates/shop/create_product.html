@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Разместить оъявление</title>
+	<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+</head>
+<body>
+	<div class="header">
+		<div class="container-header">
+			<div class="logotip">
+				<img src="{% static 'main/img/logotip.png' %}" class="logo-img">
+				<a href="{% url 'main' %}" class="logo">Sport-Channel</a>
+			</div>
+			<div class="user">
+				{% if request.user.is_authenticated %}
+				  <div class="link_profile">
+					<a href="{% url 'profile' user.id %}"><img src="{% static 'main/img/user.png' %}" class="icon">
+					{{ user.username }}</a>
+				  </div>
+				  <a href="{% url 'logout' %}">Выйти</a>
+				{% else %}
+				  <a href="{% url 'registration' %}" class="input-user">Регистрация</a>
+				  <a href="{% url 'login' %}" class="input-user" style="padding-left: 30px;">Войти</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<center><div class="form">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<label>Name</label>
+			{{ product_form.name }}
+
+			<label>Image</label>
+			{{ product_form.image }}
+	
+			<label>Text</label>
+			{{ product_form.text}}
+	
+			<label>Price</label>
+			{{ product_form.price }}
+	
+			<button type="submit">Разместить оъявление</button>
+		</form>
+	</div></center>
+
+	<!--Footer-->
+	<div class="footer">
+		<div class="footer-copyright">
+			<div class="container-footer">
+			  <h4 style="color: #fff;">Автор проекта: Абдуллаев Гамзат<br>2022</h4>
+			</div>
+		  </div>
+	</div><!--/footer-->
+</body>
+</html>

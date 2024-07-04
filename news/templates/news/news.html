@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+    {% for el in news %}
+        <div class="block_news clear-fix">
+            <div class="block-img_news" style="background-image: url({{ el.image.url }})"></div>
+            <div class="title_news">
+                <div class="title-text_news">
+                    {{ el.title }}
+                </div>
+                <div class="nav_news">
+                    <div class="date_news">
+                        {{ el.date }}
+                    </div>
+                    <a href="{% url 'new' el.id %}" class="nav_news__more-button">подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

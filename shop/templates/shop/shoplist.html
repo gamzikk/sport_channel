@@ -1,0 +1,16 @@
+{% extends 'shop/shop.html' %}
+
+{% load static %}
+
+{% block content %}
+	{% for el in products %}
+		<div class="block_products clear-fix">
+			<a href="{% url 'product' el.id %}"><div class="block-img_products" style="background-image: url({{ el.image.url }})"></div></a>
+			<div class="anons_products">
+				{{ el.name }}<br><br>
+				{{ el.price }} руб. <br><br>
+				{{ el.created_at }}
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

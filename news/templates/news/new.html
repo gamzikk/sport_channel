@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+    {% if new %}
+        <div class="block_new">
+            <div class="title_new">
+                <div class="title-text_new">
+                    <h2>{{ new.title }}</h2>
+                </div>
+            </div>
+            <div class="block-img_new" style="background-image: url({{ new.image.url }})"></div>
+            <div class="full-text_new">{{ new.full_text }}</div>
+            <div class="nav_new">
+                <div class="date_new">Опубликовано {{ new.date }}</div>
+            </div>
+            <div class="all_comments">
+                <div class="block_comment">
+                    <img class="icon_comment" src="{% static 'main/img/comment.png' %}">
+                    <div class="title_comment">Комментарии</div>
+                </div>
+                {% for comment in comments %}
+                    <div class="comments clear-fix">
+                        <div class="comment_avatar" style="background-image: url({{ comment.author.avatar.url }})"></div>
+                        <div class="comment_body">
+                            <a href="{% url 'profile' user.id %}">{{ comment.author.username }}</a>
+                            <div class="comment_text">{{ comment.comment_text }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form.comment_text }}
+                <button type="submit">Оставить комментарий</button>
+            </form>
+        </div>
+    {% else %}
+        <div>Такой новости, увы, нет</div>
+    {% endif %}
+{% endblock %}

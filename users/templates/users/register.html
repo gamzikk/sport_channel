@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+<body>
+    <div class="block_register">
+        <div class="block_register_info">
+            <div class="logotip_register">
+                <div align="center"><img src="{% static 'main/img/logotip.png' %}" class="logo-img_register"></div>
+                <div align="center"><span class="logo_register">Sport-Channel</span></div>
+            </div>
+            <div class="register_info-text">
+                <h3>Регистрируясь на сайте, вы:</h3>
+                <p>получаете возможность оставлять комментарии под новостями, совершать покупки в магазине, оставлять сообщения на форуме и, конечно же поддерживать канал.</p>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="register_form">
+                <div style="padding: 15px 10px 0px 30px">
+                    <h2 style="text-align: center;">Регистрация</h2>
+                    <p>Пожалуйста, заполните эту форму, чтобы создать учетную запись.</p>
+
+                    <label>Name</label>
+                    {{ user_form.username }}
+
+                    <label>Email</label>
+                    {{ user_form.email }}
+
+					<label>Phone</label>
+					{{ user_form.phone }}
+
+                    <label>Password</label>
+                    {{ user_form.password }}
+
+                    <label>Repeat Password</label>
+                    {{ user_form.password2 }}
+
+                </div>
+                <div style="padding: 35px 40px 0px 35px;">
+                    <div align="center"><button type="submit" class="reg"><b>Зарегистрироваться</b></button></div>
+                    <p><input type="checkbox" checked="checked">Я принимаю условия Пользовательского соглашения и даю своё согласие Sport-Channel на обработку моей персональной информации на условиях, определенных Политикой конфиденциальности.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

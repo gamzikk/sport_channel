@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Интернет-магазин</title>
+	<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<!--Header-->
+		<div class="header">
+			<div class="container-header">
+				<div class="logotip">
+					<img src="{% static 'main/img/logotip.png' %}" class="logo-img">
+					<a href="{% url 'main' %}" class="logo">Sport-Channel</a>
+				</div>
+				<div class="publication">
+					<a href="{% url 'create_product' %}" class="publication__btn">Разместить объявление</a>
+				</div>
+				<div class="user">
+					{% if request.user.is_authenticated %}
+					  <div class="link_profile">
+						<a href="{% url 'profile' user.id %}"><img src="{% static 'main/img/user.png' %}" class="icon">
+						{{ user.username }}</a>
+					  </div>
+					{% endif %}
+				</div>
+			</div>
+		</div><!--/header-->
+
+		<!--Content-->
+		<div class="content">
+			<div class="inner-content">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div><!--/content-->
+
+		<!--Footer-->
+		<div class="footer">
+			<div class="footer-copyright">
+				<div class="container-footer">
+				  <h4 style="color: #fff;">Автор проекта: Абдуллаев Гамзат<br>2022</h4>
+				</div>
+			  </div>
+		</div><!--/footer-->
+	</div>
+</body>
+</html>

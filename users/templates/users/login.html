@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+
+<body>
+    <center><div class="block_login">
+        <div class="login_info">
+            <div class="logotip_login">
+                <div align="center"><img src="{% static 'main/img/logotip.png' %}" class="logo-img_login"></div>
+                <div align="center"><span class="logo_login">Sport-Channel</span></div>
+            </div>
+            <p>Пожалуйста, пройдите авторизацию, чтобы войти в личный кабинет.</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-error">
+                {{ form.non_field_errors }}
+            </div>
+            <div class="login_form">
+
+                <label>Email</label>
+                {{ user_form.email }}
+
+                <label>Password</label>
+                {{ user_form.password }}
+
+            </div>
+            <div align="center"><button type="submit" class="log"><b>Войти</b></button></div>
+        </form>
+    </div></center>
+</body>
+</html>

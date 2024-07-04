@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+
+        <!--Header-->
+        <header class="header">
+            <div class="container-header">
+                <nav class="menu-header">
+                    <ul class="list-header">
+                        <li class="lii"><a href="#" class="a-header">Понравившиеся</a></li>
+                        <li class="lii"><a href="#" class="a-header">Закладки</a></li>
+                        <li class="lii"><a href="#" class="a-header">Друзья</a></li>
+                        <li class="lii"><a href="#" class="a-header">Уведомления</a></li>
+                        <li class="li-icon"><a href="{% url 'main' %}" class="a-header"><img class="icon" src="{% static 'users/img/home.png' %}"></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header><!--/header-->
+
+        <main class="content">
+            <div class="inner-content">
+                <div class="profile_main clear-fix">
+                    <div class="avatar" style="background-image: url({{ profile.user.avatar.url }})"></div>
+                    <div class="profile_info">
+                        {{ profile.user.username }}
+                        {{ profile.user.email }}
+                        {{ profile.user.phone }}
+                        <a href="{% url 'profile_edit' user.id %}">Редактировать</a>
+                    </div>
+                    <a class="logout" href="{% url 'logout' %}">Выйти<img src="{% static 'users/img/logout.png' %}" style="height: 25px"></a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

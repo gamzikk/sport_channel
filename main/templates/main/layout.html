@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sport-Channel</title>
+  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!--Header-->
+    <header class="header">
+      <div class="container-header">
+        <div class="logotip">
+          <img src="{% static 'main/img/logotip.png' %}" class="logo-img">
+          <a href="{% url 'main' %}" class="logo">Sport-Channel</a>
+        </div>
+        <nav class="menu-header">
+          <ul class="list-header">
+            <li class="lii">|</li>
+            <li><a href="#" class="a-header">Премьер-лиги</a></li>
+            <li class="lii">|</li>
+            <li><a href="#" class="a-header">Лига Чемпионов</a></li>
+            <li class="lii">|</li>
+            <li><a href="#" class="a-header">FIFA</a></li>
+            <li class="lii">|</li>
+          </ul>
+        </nav>
+        <div class="search">
+          <form action="{% url 'search' %}" method="get">
+            <input type="text" name="search" placeholder="Искать здесь...">
+            <button type="submit"><img src="{% static 'main/img/search.png' %}" class="icon"></button>
+          </form>
+        </div>
+        <div class="user">
+          {% if request.user.is_authenticated %}
+            <div class="link_profile">
+              {{ user.username }}
+              <a class="icon_profile" href="{% url 'profile' user.id %}"><img src="{% static 'main/img/user.png' %}" class="icon"></a>
+            </div>
+          {% else %}
+            <a href="{% url 'registration' %}" class="input-user">Регистрация</a>
+            <a href="{% url 'login' %}" class="input-user" style="padding-left: 30px;">Войти</a>
+          {% endif %}
+        </div>
+    </header><!--/header-->
+
+    <div class="container">
+      <div class="row">
+
+        <!--Content-->
+        <main class="content">
+          <div class="inner-content">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </main><!--/content-->
+
+        <!--Sidebar-->
+        <aside class="sidebar">
+          <div class="inner-sidebar">
+            <h3 class="title-sidebar">МЕНЮ</h3>
+            <nav class="menu-sidebar">
+              <ul class="list-sidebar">
+                <li class="li-sidebar"><img src="{% static 'main/img/newspaper.png' %}" class="icon"><a href="{% url 'news' %}" class="a-sidebar">Новости</a></li>
+                <li class="li-sidebar"><img src="{% static 'main/img/team.png' %}" class="icon"><a href="#" class="a-sidebar">Сообщество</a>
+                <li class="li-sidebar"><img src="{% static 'main/img/shopping-cart.png' %}" class="icon"><a href="{% url 'shop' %}" class="a-sidebar">Магазин</a></li>
+                <li class="li-sidebar"><img src="{% static 'main/img/heart.png' %}" class="icon"><a href="#" class="a-sidebar">Donate</a></li>
+              </ul>
+            </nav>
+          </div>
+        </aside><!--/sidebar-->
+
+      </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="footer">
+      <div class="footer-copyright">
+        <div class="container-footer">
+          <h4 style="color: #fff;">Автор проекта: Абдуллаев Гамзат<br>2022</h4>
+        </div>
+      </div>
+    </footer><!--/footer-->
+  </div>
+</body>
+</html>
